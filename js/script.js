@@ -43,52 +43,85 @@ closePopup(popup_close, popup);
 
 let glazing_block = document.getElementsByClassName('glazing_block'),
 		glazing_content = document.getElementsByClassName('glazing_content'),
-		glazing_slider = document.getElementsByClassName('glazing_slider')[0];
+		glazing_slider = document.getElementsByClassName('glazing_slider')[0],
+		glazingLink = document.getElementsByClassName('glazing_link'),
+		activeIndex = 0,
+		activeBalconImgIndex = 0;
 
-function hideTabContent(a) {
-	
-	for (let i = a; i < glazing_content.length; i++) {
-		glazing_content[i].style.display = 'none';
-	}
+glazing_content[0].classList.add('active');
 
-}
-
-hideTabContent(1);
-
-function showTabContent(b) {
-
-	if (glazing_content[b].style.display = 'none') {
-		hideTabContent(0);
-		glazing_content[b].style.display = 'block'
-	}
-
-}
-
-/*glazing_slider.addEventListener('click', function(event) {
+glazing_slider.addEventListener('click', function(event) {
 	let target = event.target;
-	if (target.className == 'glazing_block') {
-		for (let i = 0; i < glazing_block.length; i++) {
-			if (target == glazing_block[i]) {
-				showTabContent(i);
-				break;
+
+	if (target.parentElement.classList.contains('glazing_block')) {
+		for (let i = 0; i < glazingLink.length; i++) {
+			if (target == glazingLink[i]) {
+				changeActiveBlock(i);
 			}
 		}
 	}
-});*/
+});
 
-for (let i = 0; i < glazing_block.length; i++) {
-	glazing_block[i].addEventListener('click', function() {
-		showTabContent(i);
-	});
+function changeActiveBlock(clickedIndex) {
+	glazingLink[activeIndex].classList.remove('active');
+	glazingLink[clickedIndex].classList.add('active');
+
+	glazing_content[activeIndex].classList.remove('active');
+	glazing_content[clickedIndex].classList.add('active');
+
+	activeIndex = clickedIndex;
 }
-
 
 // Popup_calc
 
 let glazing_price_btn = document.getElementsByClassName('glazing_price_btn'),
-		popup_calc =  document.querySelector('.popup_calc');
+		popup_calc =  document.querySelector('.popup_calc'),
+		balconIcons = document.getElementsByClassName('balcon_icons')[0],
+		balconImg = document.getElementsByClassName('balcon_img'),
+		balconBigImg = document.getElementsByClassName('balcon_big_img'),
+		formControl = document.getElementsByClassName('form-control');
 
 openPopup(glazing_price_btn, popup_calc);
+
+balconBigImg[0].classList.add('active');
+
+balconIcons.addEventListener('click', function(event) {
+	let target = event.target;
+	
+	if (target.className == 'balcon_img') {
+		for (let i = 0; i < balconImg.length; i++) {
+			if (target == balconImg[i]) {
+				changeActiveImg(i);
+			}
+		}
+	}
+});
+
+function changeActiveImg(clickedIndex) {
+	balconBigImg[activeBalconImgIndex].classList.remove('active');
+	balconBigImg[clickedIndex].classList.add('active');
+
+	balconImg[activeBalconImgIndex].classList.remove('active');
+	balconImg[clickedIndex].classList.add('active');
+
+	activeBalconImgIndex = clickedIndex;
+}
+
+for (let i = 0; i < formControl.length; i++) {
+	formControl[i].onkeypress = function(e) {  
+		if (e.key === '.' || e.key === '+' || e.key === ',' || e.key === '-') {
+			return false;
+		}
+	}
+}
+
+
+
+
+
+
+
+
 	
 
 

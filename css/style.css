@@ -744,7 +744,8 @@ textarea:focus {
   margin-bottom: 1rem;
 }
 .popup_calc_content .big_img img {
-  display: none;
+  margin-left: auto;
+  margin-right: auto;
   margin-bottom: 3rem;
   width: 30rem;
 }
@@ -1468,10 +1469,29 @@ textarea:focus {
     animation: none !important;
   }
 }
-.show {
+.glazing_content,
+.balcon_big_img {
+  display: none;
+}
+.glazing_content.active {
   display: block;
 }
-.hide {
-  display: none;
-} 
+.balcon_big_img.active {
+  display: block;
+}
+.balcon_icons img {
+  width: 60px;
+  height: auto;
+}
+.balcon_icons img.active {
+  width: 90px;
+  height: auto;
+}
+input[type='number'] {
+    -moz-appearance:textfield;
+}
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
