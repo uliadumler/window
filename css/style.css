@@ -1470,13 +1470,17 @@ textarea:focus {
   }
 }
 .glazing_content,
-.balcon_big_img {
+.balcon_big_img,
+.decoration_content_item {
   display: none;
 }
 .glazing_content.active {
   display: block;
 }
 .balcon_big_img.active {
+  display: block;
+}
+.decoration_content_item.active {
   display: block;
 }
 .balcon_icons img {
